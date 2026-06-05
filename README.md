@@ -16,9 +16,13 @@
 
 ---
 
-## 📱 لقطات الشاشة
+## 📱 لقطات الشاشة | Screenshots
 
-> قريباً — Screenshots Coming Soon
+<p align="center">
+  <img src="assets/screenshots/dashboard.png" width="31%" alt="Event Dashboard" />
+  <img src="assets/screenshots/invitation.png" width="31%" alt="Luxury Invitation Card" />
+  <img src="assets/screenshots/scanner.png" width="31%" alt="QR Code Scanner" />
+</p>
 
 ---
 

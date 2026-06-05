@@ -63,3 +63,12 @@ test_supabase.dart
 # Google Services
 google-services.json
 GoogleService-Info.plist
+
+# Signing Keys & Credentials
+*.keystore
+*.jks
+*.p12
+android/key.properties
+key.properties
+local.properties
+

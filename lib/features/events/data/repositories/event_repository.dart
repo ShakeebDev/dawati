@@ -140,7 +140,7 @@ class EventRepository {
           .single();
       return Success(EventModel.fromJson(response));
     } catch (e) {
-      return Failure(DatabaseFailure.unknown(e.toString()));
+      return Failure(DatabaseFailure.unknown(e));
     }
   }
 
@@ -153,7 +153,7 @@ class EventRepository {
           .eq('id', eventId);
       return const Success(true);
     } catch (e) {
-      return Failure(DatabaseFailure.unknown(e.toString()));
+      return Failure(DatabaseFailure.unknown(e));
     }
   }
 }

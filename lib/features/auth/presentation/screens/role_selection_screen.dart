@@ -26,41 +26,49 @@ class RoleSelectionScreen extends ConsumerWidget {
     return Scaffold(
       body: Container(
         width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(gradient: AppTheme.luxuryGradient),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.stars, color: AppTheme.goldPrimary, size: 80),
-                const SizedBox(height: 40),
-                Text(
-                  'مرحباً بك في دعوتي',
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: AppTheme.goldPrimary,
-                      ),
+          child: Center(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.stars, color: AppTheme.goldPrimary, size: 80),
+                    const SizedBox(height: 32),
+                    Text(
+                      'مرحباً بك في دعوتي',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            color: AppTheme.goldPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'يرجى اختيار طبيعة استخدامك للتطبيق',
+                      style: TextStyle(color: Colors.white70, fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 48),
+                    _RoleCard(
+                      title: 'منظم مناسبات',
+                      description: 'إنشاء المناسبات، إدارة الضيوف، والتحليلات',
+                      icon: Icons.event_available,
+                      onTap: () => _selectRole(context, AppConstants.roleOrganizer),
+                    ),
+                    const SizedBox(height: 20),
+                    _RoleCard(
+                      title: 'موظف استقبال',
+                      description: 'مسح رموز QR والتحقق من دخول الضيوف',
+                      icon: Icons.qr_code_scanner,
+                      onTap: () => _selectRole(context, AppConstants.roleStaff),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                const Text(
-                  'يرجى اختيار طبيعة استخدامك للتطبيق',
-                  style: TextStyle(color: Colors.white70, fontSize: 16),
-                ),
-                const SizedBox(height: 60),
-                _RoleCard(
-                  title: 'منظم مناسبات',
-                  description: 'إنشاء المناسبات، إدارة الضيوف، والتحليلات',
-                  icon: Icons.event_available,
-                  onTap: () => _selectRole(context, AppConstants.roleOrganizer),
-                ),
-                const SizedBox(height: 20),
-                _RoleCard(
-                  title: 'موظف استقبال',
-                  description: 'مسح رموز QR والتحقق من دخول الضيوف',
-                  icon: Icons.qr_code_scanner,
-                  onTap: () => _selectRole(context, AppConstants.roleStaff),
-                ),
-              ],
+              ),
             ),
           ),
         ),
@@ -86,20 +94,21 @@ class _RoleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(24),
       child: Container(
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardTheme.color,
+          color: Colors.white.withOpacity(0.07),
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
-              color: Theme.of(context).dividerColor.withOpacity(0.1)),
+              color: AppTheme.goldPrimary.withOpacity(0.2), width: 1.5),
         ),
         child: Row(
           children: [
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: AppTheme.goldPrimary.withOpacity(0.2),
+                color: AppTheme.goldPrimary.withOpacity(0.15),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: AppTheme.goldPrimary, size: 32),
@@ -111,8 +120,8 @@ class _RoleCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.titleLarge?.color,
+                    style: const TextStyle(
+                      color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -120,16 +129,16 @@ class _RoleCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     description,
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.bodySmall?.color,
+                    style: const TextStyle(
+                        color: Colors.white70,
                         fontSize: 12),
                   ),
                 ],
               ),
             ),
             const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.white38,
+              Icons.arrow_forward_ios_rounded,
+              color: AppTheme.goldPrimary,
               size: 16,
             ),
           ],

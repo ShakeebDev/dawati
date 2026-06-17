@@ -1,4 +1,4 @@
-package com.example.dawati
+package com.shakeebdev.dawati
 
 import io.flutter.embedding.android.FlutterActivity
 

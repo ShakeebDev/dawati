@@ -119,7 +119,7 @@ class GuestRepository {
 
       return Success(GuestModel.fromJson(response));
     } catch (e) {
-      return Failure(DatabaseFailure.unknown(e.toString()));
+      return Failure(DatabaseFailure.unknown(e));
     }
   }
 
@@ -139,7 +139,7 @@ class GuestRepository {
 
       return Success(addedGuests);
     } catch (e) {
-      return Failure(DatabaseFailure.unknown(e.toString()));
+      return Failure(DatabaseFailure.unknown(e));
     }
   }
 
@@ -155,7 +155,7 @@ class GuestRepository {
           .eq('id', guestId);
       return const Success(null);
     } catch (e) {
-      return Failure(DatabaseFailure.unknown(e.toString()));
+      return Failure(DatabaseFailure.unknown(e));
     }
   }
 
@@ -174,7 +174,7 @@ class GuestRepository {
 
       return Success(GuestModel.fromJson(response));
     } catch (e) {
-      return Failure(DatabaseFailure.unknown(e.toString()));
+      return Failure(DatabaseFailure.unknown(e));
     }
   }
 }

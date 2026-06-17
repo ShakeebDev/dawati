@@ -97,6 +97,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         width: double.infinity,
                         height: 52,
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                          ),
                           onPressed: () {
                             if (_currentPage < _items.length - 1) {
                               _pageController.nextPage(
@@ -132,43 +135,48 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _buildPage(OnboardingItem item, bool isSmallScreen) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.all(isSmallScreen ? 20 : 30),
-            decoration: BoxDecoration(
-              color: AppTheme.goldPrimary.withOpacity(0.1),
-              shape: BoxShape.circle,
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(isSmallScreen ? 20 : 30),
+              decoration: BoxDecoration(
+                color: AppTheme.goldPrimary.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                item.icon,
+                size: isSmallScreen ? 70 : 100,
+                color: AppTheme.goldPrimary,
+              ),
+            ).animate().scale(duration: 600.ms),
+            SizedBox(height: isSmallScreen ? 24 : 40),
+            Text(
+              item.title,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: isSmallScreen ? 22 : null,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
             ),
-            child: Icon(
-              item.icon,
-              size: isSmallScreen ? 70 : 100,
-              color: AppTheme.goldPrimary,
+            const SizedBox(height: 16),
+            Text(
+              item.description,
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: Theme.of(context).hintColor),
             ),
-          ).animate().scale(duration: 600.ms),
-          SizedBox(height: isSmallScreen ? 24 : 40),
-          Text(
-            item.title,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: isSmallScreen ? 22 : null,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            item.description,
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge
-                ?.copyWith(color: Theme.of(context).hintColor),
-          ),
-        ],
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }

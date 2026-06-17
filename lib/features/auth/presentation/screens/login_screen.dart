@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:dawati/features/auth/presentation/providers/auth_provider.dart';
 import 'package:dawati/core/utils/app_utils.dart';
 import 'package:dawati/core/security/device_trust_service.dart';
+import 'package:dawati/core/theme/app_theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:dawati/core/widgets/responsive_wrapper.dart';
 
@@ -120,6 +122,39 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     child: const Text('سجل الآن'),
                   ),
                 ],
+              ),
+              const SizedBox(height: 12),
+              Center(
+                child: TextButton.icon(
+                  onPressed: () async {
+                    final whatsappUrl = Uri.parse('https://wa.me/967738180731?text=${Uri.encodeComponent("مرحباً مطور تطبيق دعوتي، أود الاستفسار عن:")}');
+                    if (await canLaunchUrl(whatsappUrl)) {
+                      await launchUrl(whatsappUrl, mode: LaunchMode.externalApplication);
+                    } else {
+                      final emailUrl = Uri.parse('mailto:shkybalhashmy@gmail.com?subject=${Uri.encodeComponent("استفسار بخصوص تطبيق دعوتي")}');
+                      if (await canLaunchUrl(emailUrl)) {
+                        await launchUrl(emailUrl);
+                      } else {
+                        if (context.mounted) {
+                          AppUtils.showSnackBar(
+                            context,
+                            'تعذر فتح واتساب أو البريد الإلكتروني. يمكنك التواصل مباشرة عبر الرقم: 738180731(967+)',
+                            isError: true,
+                          );
+                        }
+                      }
+                    }
+                  },
+                  icon: const Icon(Icons.support_agent_rounded, color: AppTheme.goldDark),
+                  label: const Text(
+                    'التواصل مع المطور',
+                    style: TextStyle(
+                      color: AppTheme.goldDark,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

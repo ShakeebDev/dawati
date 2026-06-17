@@ -56,10 +56,7 @@ class AuthRepository {
 
       return Success(user);
     } on AuthException catch (e) {
-      if (e.message.contains('already registered')) {
-        return Failure(AuthFailure.emailAlreadyInUse());
-      }
-      return Failure(AuthFailure(message: e.message));
+      return Failure(AuthFailure(message: AppFailure.mapMessage(e)));
     } catch (e) {
       return Failure(AuthFailure.fromException(e));
     }
@@ -120,10 +117,7 @@ class AuthRepository {
 
       return Success(user);
     } on AuthException catch (e) {
-      if (e.message.contains('Invalid login credentials')) {
-        return Failure(AuthFailure.invalidCredentials());
-      }
-      return Failure(AuthFailure(message: e.message));
+      return Failure(AuthFailure(message: AppFailure.mapMessage(e)));
     } catch (e) {
       return Failure(AuthFailure.fromException(e));
     }

@@ -11,23 +11,72 @@ abstract class AppFailure {
   String toString() => 'AppFailure(message: $message, code: $code)';
 
   static String mapMessage(Object e) {
+    if (e is String) {
+      return e;
+    }
     if (e is PostgrestException) {
+      final msg = e.message.toLowerCase();
+      final code = e.code;
+      
+      if (code == '42501' || msg.contains('violates row-level security')) {
+        return 'عذراً، ليس لديك الصلاحية المطلوبة لإتمام هذه العملية.';
+      }
+      if (code == '23505' || msg.contains('duplicate key') || msg.contains('already exists')) {
+        return 'هذه البيانات مسجلة بالفعل في النظام.';
+      }
+      if (code == '23503' || msg.contains('foreign key violation') || msg.contains('violates foreign key')) {
+        return 'فشلت العملية لارتباطها ببيانات أخرى غير صحيحة.';
+      }
+      if (msg.contains('limit reached') || msg.contains('max limit') || msg.contains('limit_reached') || msg.contains('reached')) {
+        return 'تم الوصول إلى الحد الأقصى المسموح به للباقة الخاصة بك. يرجى الترقية لإضافة المزيد.';
+      }
+      return 'خطأ في معالجة البيانات: ${e.message}';
+    }
+    
+    if (e is AuthException) {
+      final msg = e.message.toLowerCase();
+      
+      if (msg.contains('invalid login credentials') || msg.contains('invalid credentials')) {
+        return 'البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مجدداً.';
+      }
+      if (msg.contains('already registered') || msg.contains('signup_email_exists') || msg.contains('email already exists')) {
+        return 'هذا البريد الإلكتروني مسجل بالفعل. يرجى تسجيل الدخول.';
+      }
+      if (msg.contains('password should be') || msg.contains('weak password')) {
+        return 'يجب أن تكون كلمة المرور مكونة من 6 خانات على الأقل.';
+      }
+      if (msg.contains('email not confirmed') || msg.contains('confirm your email')) {
+        return 'يرجى تأكيد حسابك بالضغط على الرابط المرسل إلى بريدك الإلكتروني.';
+      }
+      if (msg.contains('user not found')) {
+        return 'عذراً، هذا المستخدم غير مسجل لدينا.';
+      }
+      if (msg.contains('too many requests') || msg.contains('rate limit') || msg.contains('over_limit')) {
+        return 'لقد قمت بمحاولات كثيرة جداً. يرجى الانتظار دقيقة والمحاولة مجدداً.';
+      }
+      if (msg.contains('invalid email')) {
+        return 'البريد الإلكتروني المدخل غير صالح.';
+      }
+      if (msg.contains('network') || msg.contains('connection')) {
+        return 'فشل الاتصال بالشبكة أثناء محاولة التوثيق. يرجى المحاولة مجدداً.';
+      }
       return e.message;
     }
-    final errorStr = e.toString();
-    if (errorStr.contains('SocketException') ||
-        errorStr.contains('Failed host lookup') ||
-        errorStr.contains('connection timed out')) {
+    
+    final errorStr = e.toString().toLowerCase();
+    if (errorStr.contains('socketexception') ||
+        errorStr.contains('failed host lookup') ||
+        errorStr.contains('connection timed out') ||
+        errorStr.contains('network_error')) {
       return 'تعذر الاتصال بالخادم، يرجى التأكد من تشغيل الإنترنت والمحاولة مرة أخرى.';
     }
-    if (errorStr.contains('Connection refused')) {
+    if (errorStr.contains('connection refused')) {
       return 'الخادم غير متاح حالياً، يرجى المحاولة لاحقاً.';
     }
-    if (errorStr.contains('PostgrestException') ||
-        errorStr.contains('limit reached') ||
-        errorStr.contains('Limit reached') ||
-        errorStr.contains('reached')) {
-      return errorStr;
+    if (errorStr.contains('limit reached') ||
+        errorStr.contains('reached') ||
+        errorStr.contains('limit_reached')) {
+      return 'تم الوصول إلى الحد الأقصى المسموح به للباقة الخاصة بك. يرجى الترقية لإضافة المزيد.';
     }
     return 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.';
   }
@@ -58,7 +107,7 @@ class AuthFailure extends AppFailure {
   factory AuthFailure.fromException(Object e) {
     return AuthFailure(
       message: AppFailure.mapMessage(e),
-      code: 'auth_network_error',
+      code: 'auth_error',
     );
   }
 }

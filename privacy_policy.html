@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سياسة الخصوصية — تطبيق دعوتي (Dawati)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0d1b3e;
+      --accent-color: #d4af37;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --border-color: #e2e8f0;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Cairo', 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.8;
+      padding: 2rem 1rem;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: var(--bg-white);
+      padding: 3rem 2.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+    }
+    
+    .language-toggle {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .lang-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color);
+      background: var(--bg-light);
+      border-radius: 0.375rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.875rem;
+      font-family: inherit;
+    }
+    
+    .lang-btn.active {
+      background-color: var(--primary-color);
+      color: var(--bg-white);
+      border-color: var(--primary-color);
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 2px solid var(--bg-light);
+      padding-bottom: 2rem;
+    }
+    
+    .logo-container {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background-color: rgba(13, 27, 62, 0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed var(--accent-color);
+    }
+    
+    .logo-icon {
+      font-size: 2.5rem;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      color: var(--accent-color);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    .last-updated {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    
+    h2 {
+      font-size: 1.35rem;
+      color: var(--primary-color);
+      margin: 2rem 0 1rem;
+      border-right: 4px solid var(--accent-color);
+      padding-right: 0.75rem;
+    }
+    
+    p, li {
+      color: #334155;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    
+    ul {
+      margin-right: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .alert-box {
+      background-color: #fffbeb;
+      border-right: 4px solid #f59e0b;
+      padding: 1rem;
+      border-radius: 0.375rem;
+      margin: 1.5rem 0;
+    }
+    
+    .alert-box p {
+      margin-bottom: 0;
+      color: #78350f;
+      font-weight: 600;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    
+    /* English view styling */
+    body:not(.en-mode) .en-content {
+      display: none;
+    }
+    
+    body.en-mode {
+      direction: ltr;
+    }
+    
+    body.en-mode .ar-content {
+      display: none;
+    }
+    
+    body.en-mode h2 {
+      border-right: none;
+      border-left: 4px solid var(--accent-color);
+      padding-right: 0;
+      padding-left: 0.75rem;
+    }
+    
+    body.en-mode ul {
+      margin-right: 0;
+      margin-left: 2rem;
+    }
+    
+    body.en-mode .alert-box {
+      border-right: none;
+      border-left: 4px solid #f59e0b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Language Selection Buttons -->
+    <div class="language-toggle">
+      <button class="lang-btn active" id="btn-ar" onclick="setLanguage('ar')">العربية</button>
+      <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">English</button>
+    </div>
+
+    <!-- ARABIC PRIVACY POLICY -->
+    <div class="ar-content">
+      <header>
+        <div class="logo-container">
+          <span class="logo-icon">🎉</span>
+        </div>
+        <h1>سياسة الخصوصية لتطبيق "دعوتي"</h1>
+        <p class="subtitle">دعوتك بأناقة… دخول ذكي وآمن</p>
+        <p class="last-updated">آخر تحديث: 18 يونيو 2026</p>
+      </header>
+
+      <p>نهتم في تطبيق <strong>دعوتي (Dawati)</strong> بخصوصية بياناتك بشكل كبير. توضح سياسة الخصوصية هذه كيفية جمع البيانات واستخدامها وحمايتها عند استخدامك للتطبيق.</p>
+
+      <h2>1. البيانات التي نجمعها وكيفية جمعها</h2>
+      <p>نقوم بجمع البيانات اللازمة لتشغيل خدمات إدارة المناسبات والدعوات الرقمية بفعالية:</p>
+      <ul>
+        <li><strong>بيانات الحساب والمصادقة</strong>: نجمع الاسم الكامل، البريد الإلكتروني، رقم الهاتف، وكلمة المرور المشفرة عند تسجيل الحساب عبر خوادم Supabase الآمنة.</li>
+        <li><strong>بيانات المناسبات والضيوف</strong>: نقوم بحفظ تفاصيل مناسباتك (الاسم، التاريخ، الموقع) وقائمة ضيوفك (الأسماء، الأرقام، أرقام الطاولات والمقاعد) لتوليد رموز الـ QR وإرسال الدعوات.</li>
+        <li><strong>بيانات أمان الأجهزة</strong>: نقوم بفحص وتخزين معرفات الأجهزة لغرض تفعيل نظام "توثيق الأجهزة الموثوقة" للحد من سوء الاستخدام ولتأمين حسابات المنظمين وموظفي الاستقبال.</li>
+      </ul>
+
+      <h2>2. الأذونات الحساسة (Android Permissions)</h2>
+      <p>يطلب التطبيق أذونات معينة لتقديم خدماته التشغيلية، ولا يتم استخدام هذه الأذونات لأي أغراض أخرى:</p>
+      <ul>
+        <li><strong>إذن الكاميرا (Camera Permission)</strong>: يُستخدم حصرياً لمسح كود الـ QR عند بوابات استقبال الضيوف للتحقق من الدعوة. لا يتم حفظ أي صور أو مقاطع فيديو أو رفعها لخوادمنا.</li>
+        <li><strong>إذن جهات الاتصال (Contacts Permission)</strong>: يُطلب بشكل اختياري فقط لمساعدتك على استيراد أسماء وأرقام الضيوف من هاتفك دفعة واحدة بدلاً من إدخالها يدوياً. تتم معالجة جهات الاتصال محلياً بالكامل على جهازك، ولن نقوم برفع أو مشاركة قائمة جهات الاتصال الخاصة بك نهائياً؛ بل يتم رفع فقط الضيوف الذين تحددهم أنت لتسجيلهم في المناسبة.</li>
+      </ul>
+
+      <h2>3. استخدام البيانات ومشاركتها</h2>
+      <p>نحن لا نبيع أو نؤجر أو نشارك بياناتك الشخصية مع أي أطراف ثالثة لأغراض تسويقية. يتم استخدام بياناتك للأغراض التالية فقط:</p>
+      <ul>
+        <li>إدارة حسابك وتوفير ميزات إعداد المناسبات وإرسال الدعوات عبر واتساب.</li>
+        <li>التحقق من صحة حضور الضيوف عند البوابات في الوقت الفعلي أو في وضع عدم الاتصال.</li>
+        <li>تحديد مستوى باقة الاشتراك الخاصة بك وإرسال إشعارات الدعم والترقية.</li>
+      </ul>
+
+      <h2>4. تخزين البيانات وحمايتها</h2>
+      <p>يتم تخزين بياناتك بشكل آمن على منصة <strong>Supabase</strong> السحابية الموثوقة، وتتم حماية الاتصالات باستخدام تشفير طبقة المنافذ الآمنة (SSL/TLS). كما نطبق سياسات الحماية على مستوى الصفوف (Row Level Security - RLS) في قاعدة البيانات لضمان عدم وصول أي مستخدم أو منظم لبيانات مناسبات ضيوف منظمين آخرين.</p>
+
+      <h2>5. حذف الحساب والبيانات (Account Deletion)</h2>
+      <div class="alert-box">
+        <p>يحق لك في أي وقت تعديل بياناتك أو طلب حذف حسابك بالكامل من النظام مع كافة البيانات المرتبطة به. يمكنك القيام بذلك عبر إرسال طلب حذف إلى البريد الإلكتروني للمطور: shkybalhashmy@gmail.com وسنقوم بحذف الحساب نهائياً خلال 48 ساعة.</p>
+      </div>
+
+      <h2>6. التواصل معنا</h2>
+      <p>إذا كان لديك أي استفسارات أو ملاحظات حول سياسة الخصوصية هذه، يمكنك التواصل مباشرة مع المطور:</p>
+      <p>
+        <strong>المطور:</strong> شكيب سعيد محمد غالب<br>
+        <strong>البريد الإلكتروني:</strong> shkybalhashmy@gmail.com<br>
+        <strong>الهاتف (واتساب):</strong> 738180731 (967+)
+      </p>
+    </div>
+
+    <!-- ENGLISH PRIVACY POLICY -->
+    <div class="en-content">
+      <header>
+        <div class="logo-container">
+          <span class="logo-icon">🎉</span>
+        </div>
+        <h1>Privacy Policy for "Dawati"</h1>
+        <p class="subtitle">Your Invitation in Style... Smart and Secure Access</p>
+        <p class="last-updated">Last Updated: June 18, 2026</p>
+      </header>
+
+      <p>At <strong>Dawati</strong>, we are highly committed to protecting your personal data and privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our application.</p>
+
+      <h2>1. Information We Collect and How We Collect It</h2>
+      <p>We collect information necessary to provide and maintain our digital invitation and event management services:</p>
+      <ul>
+        <li><strong>Account & Authentication Data</strong>: We collect your full name, email address, phone number, and encrypted password during registration, stored securely via Supabase Auth.</li>
+        <li><strong>Event & Guest Data</strong>: We save event details (name, date, location) and guest lists (names, phone numbers, table/seat numbers) to generate secure QR codes and handle invitations.</li>
+        <li><strong>Device Trust Data</strong>: We verify and store device identifier hashes to implement our Device Trust Security feature, protecting organizer and gatekeeper access from unauthorized use.</li>
+      </ul>
+
+      <h2>2. Sensitive Permissions (Android Permissions)</h2>
+      <p>The application requests specific device permissions strictly for core functionality:</p>
+      <ul>
+        <li><strong>Camera Permission</strong>: Used solely to scan invitation QR codes at event entry gates. No photos or video recordings are saved locally or uploaded to our servers.</li>
+        <li><strong>Contacts Permission</strong>: Requested optionally to allow you to import guest names and phone numbers easily from your phonebook. All contact scanning is processed locally on your device. We do not upload or store your contact list on our servers; only the specific guests you select are saved to your event database.</li>
+      </ul>
+
+      <h2>3. How We Use and Share Information</h2>
+      <p>We do not sell, rent, or share your personal data with third parties for marketing purposes. Your information is used strictly to:</p>
+      <ul>
+        <li>Manage your account, create events, and generate WhatsApp invitations.</li>
+        <li>Validate guest entry at gates in real-time or offline mode.</li>
+        <li>Manage subscription levels and process system notifications.</li>
+      </ul>
+
+      <h2>4. Data Storage and Security</h2>
+      <p>Your data is stored securely on <strong>Supabase</strong> cloud infrastructure. Communications are encrypted in transit using SSL/TLS protocols. We enforce Row Level Security (RLS) policies within our database to guarantee that no user can access or read event data or guest lists belonging to another organizer.</p>
+
+      <h2>5. Account & Data Deletion</h2>
+      <div class="alert-box">
+        <p>You have the right to request the complete deletion of your account and all associated event/guest databases at any time. To do so, please contact us at shkybalhashmy@gmail.com. Your account and metadata will be permanently deleted within 48 hours.</p>
+      </div>
+
+      <h2>6. Contact Us</h2>
+      <p>If you have any questions or feedback regarding this Privacy Policy, please contact the developer:</p>
+      <p>
+        <strong>Developer:</strong> Shakib Saeed Mohammed Ghaleb<br>
+        <strong>Email:</strong> shkybalhashmy@gmail.com<br>
+        <strong>WhatsApp:</strong> +967 738180731
+      </p>
+    </div>
+
+    <footer>
+      <p>© 2026 تطبيق دعوتي (Dawati). جميع الحقوق محفوظة.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      const body = document.body;
+      const btnAr = document.getElementById('btn-ar');
+      const btnEn = document.getElementById('btn-en');
+      
+      if (lang === 'en') {
+        body.classList.add('en-mode');
+        btnEn.classList.add('active');
+        btnAr.classList.remove('active');
+      } else {
+        body.classList.remove('en-mode');
+        btnAr.classList.add('active');
+        btnEn.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>
